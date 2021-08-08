@@ -3,21 +3,21 @@
 //
 //  Created by deathlezz on 6/08/2021.
 //
-//  https://v6.exchangerate-api.com/v6/b7069835f198cb7389c14e62/latest/USD
+//  https://api.frankfurter.app/latest?from=USD
 
 import Foundation
 
 // specify how the json file looks like
 struct json: Codable {
-    let base_code: String
-    let conversion_rates: [String: Float]
+    let base: String
+    let rates: [String: Float]
 }
 
 // create function
 func convert(from: String, to: String, amount: Float) {
 
     // create url
-    let url = URL(string: "https://v6.exchangerate-api.com/v6/b7069835f198cb7389c14e62/latest/\(from)")
+    let url = URL(string: "https://api.frankfurter.app/latest?from=\(from)")
     
     do {
         // make http (get) call
@@ -30,11 +30,11 @@ func convert(from: String, to: String, amount: Float) {
         let ratesData = try JSONDecoder().decode(json.self, from: data!)
 
         // multiply value with rate
-        let calculate = amount * ratesData.conversion_rates[to]!
+        let calculate = amount * ratesData.rates[to]!
         
         // output
-        print("\(amount) \(ratesData.base_code) = \(calculate) \(to)")
-        print("Rate: \(ratesData.conversion_rates[to]!)")
+        print("\(amount) \(ratesData.base) = \(calculate) \(to)")
+        print("Rate: \(ratesData.rates[to]!)")
         
     } catch {
         print("* Probably connection error *")
