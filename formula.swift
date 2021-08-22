@@ -8,7 +8,7 @@
 import Foundation
 
 // specify how the json file looks like
-struct json: Codable {
+struct Json: Codable {
     let base: String
     let rates: [String: Float]
 }
@@ -27,7 +27,7 @@ func convert(from: String, to: String, amount: Float) {
         let data = contents.data(using: .utf8)
 
         // decode json data
-        let ratesData = try JSONDecoder().decode(json.self, from: data!)
+        let ratesData = try JSONDecoder().decode(Json.self, from: data!)
 
         // multiply value with rate
         let calculate = amount * ratesData.rates[to]!
