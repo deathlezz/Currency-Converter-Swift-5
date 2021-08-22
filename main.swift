@@ -13,7 +13,7 @@ let currency = ["USD", "EUR", "JPY", "GBP"]
 func convert(base: String, to: String, amount: Float) {
 
     // specify how the json file looks like
-    struct json: Codable {
+    struct Json: Codable {
         let base: String
         let rates: [String: Float]
     }
@@ -29,7 +29,7 @@ func convert(base: String, to: String, amount: Float) {
             let data = contents.data(using: .utf8)
 
             // decode json data
-            let ratesData = try JSONDecoder().decode(json.self, from: data!)
+            let ratesData = try JSONDecoder().decode(Json.self, from: data!)
 
             if base != to {
                 // multiply amount with rates
