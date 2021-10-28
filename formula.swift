@@ -29,7 +29,7 @@ func convert(from: String, to: String, amount: Float) {
         // decode json data
         let ratesData = try JSONDecoder().decode(Json.self, from: data!)
 
-        // multiply value with rate
+        // multiply amount by rate
         let calculate = amount * ratesData.rates[to]!
         
         // output
