@@ -52,7 +52,7 @@ func enterBase() {
     print()
     print("Enter base currency: [USD, EUR, JPY, GBP]")
 
-    let base = readLine()
+    let base = readLine()!.uppercased()
         
     if base == "USD" || base == "EUR" || base == "JPY" || base == "GBP" {
 
