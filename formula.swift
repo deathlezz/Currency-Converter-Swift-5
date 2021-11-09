@@ -20,7 +20,7 @@ func convert(from: String, to: String, amount: Float) {
     let url = URL(string: "https://api.frankfurter.app/latest?from=\(from)")
     
     do {
-        // make http (get) call
+        // make http GET call
         let contents = try String(contentsOf: url!)
 
         // specify decoding format
@@ -33,11 +33,11 @@ func convert(from: String, to: String, amount: Float) {
         let calculate = amount * ratesData.rates[to]!
         
         // output
-        print("\(amount) \(ratesData.base) = \(calculate) \(to)")
+        print("\(amount) \(from) = \(calculate) \(to)")
         print("Rate: \(ratesData.rates[to]!)")
         
     } catch {
-        print("* Probably connection error *")
+        print("* Connection error *")
     }
 }
 
