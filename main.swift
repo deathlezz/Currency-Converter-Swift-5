@@ -22,7 +22,7 @@ func convert(base: String, to: String, amount: Float) {
     if let url = URL(string: "https://api.frankfurter.app/latest?from=\(base)") {
 
         do {
-            // make http (get) call
+            // make http GET call
             let contents = try String(contentsOf: url)
 
             // specify decoding format
@@ -32,14 +32,14 @@ func convert(base: String, to: String, amount: Float) {
             let ratesData = try JSONDecoder().decode(Json.self, from: data!)
 
             if base != to {
-                // multiply amount with rates
+                // multiply amount by rate
                 let multiply = amount * ratesData.rates["\(to)"]!
             
                 // output
                 print("\(amount) \(base) = \(multiply) \(to)")
             }
         } catch {
-            print("* Check connection *")
+            print("* Connection error *")
         }
     } else {
         print("* Invalid URL *")
